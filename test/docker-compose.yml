@@ -1,0 +1,11 @@
+version: '3.1'
+
+services: 
+    test:
+        image: nginx
+        ports: 
+            - "8080:80"
+        volumes: 
+            - ./conf.d:/etc/nginx/conf.d
+            - ./html:/var/www/html
+            - ./log:/var/log/nginx
