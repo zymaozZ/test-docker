@@ -1,0 +1,6 @@
+version: '3'
+services:
+  php-workspace:
+    image: php:7.4-fpm-alpine
+  nginx:
+    image: nginx:1.17-alpine

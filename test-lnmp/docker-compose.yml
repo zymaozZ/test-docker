@@ -1,0 +1,41 @@
+version: '3'
+
+services: 
+    # mysql:
+    #     image: mysql:8.0.19
+    #     command: --default-authentication-plugin=mysql_native_password
+    #     restart: always
+    #     environment:
+    #         MYSQL_ROOT_PASSWORD: '00000000'
+    #     # networks:
+    #     #     - db-network
+    #     ports:
+    #         - 33061:3306
+
+    php:
+        image: php:7.4-fpm-alpine
+        # build: 
+        #     context: ./php
+        restart: always
+        volumes: 
+            - ./php/html:/var/www/html
+        # networks:
+        #     - db-network
+
+    nginx:
+        image: nginx:1.17-alpine
+        ports:
+            - 8081:80
+        restart: always
+        volumes:
+            # - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./nginx/servers:/etc/nginx/conf.d
+            - ./php/html:/var/www/html
+            
+        # working_dir: /var/www/html
+        # networks:
+        #     - db-network
+
+
+# networks: 
+#     db-network:
